@@ -56,12 +56,12 @@ def compact_match(event):
 
 def round_name(stage):
     s = stage.lower()
-    if "round of 32" in s: return "1/16 фіналу"
-    if "round of 16" in s: return "1/8 фіналу"
-    if "quarter" in s: return "Чвертьфінал"
-    if "semi" in s: return "Півфінал"
-    if "third" in s: return "Матч за 3-тє місце"
-    if "final" in s and "group" not in s: return "Фінал"
+    if "round of 32" in s: return "Round of 32"
+    if "round of 16" in s: return "Round of 16"
+    if "quarter" in s: return "Quarter-finals"
+    if "semi" in s: return "Semi-finals"
+    if "third" in s: return "Third-place match"
+    if "final" in s and "group" not in s: return "Final"
     return None
 
 def fetch_roster(team):
@@ -107,7 +107,7 @@ def main():
 
     eliminated = {tid for tid, t in teams_by_id.items() if t["played"] >= 3 and not t["advanced"]}
     knockout_wins = {tid: 0 for tid in teams_by_id}
-    bracket = {"1/16 фіналу": [], "1/8 фіналу": [], "Чвертьфінал": [], "Півфінал": [], "Матч за 3-тє місце": [], "Фінал": []}
+    bracket = {"Round of 32": [], "Round of 16": [], "Quarter-finals": [], "Semi-finals": [], "Third-place match": [], "Final": []}
 
     for match in matches:
         rnd = round_name(match["stage"])

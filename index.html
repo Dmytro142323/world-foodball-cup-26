@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Матч-центр Чемпіонату світу FIFA 2026: календар, результати, групи, сітка, склади та модель шансів.">
+  <meta name="description" content="FIFA World Cup 2026 match centre: fixtures, results, groups, bracket, squads and title probabilities.">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>World Cup 26 · Match Centre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,76 +12,76 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Перейти до матчів</a>
+  <a class="skip-link" href="#main">Skip to matches</a>
   <header class="header">
     <a class="logo" href="#top" aria-label="World Cup 26">
       <span class="logo-ball">26</span>
       <span>WORLD CUP<br><small>MATCH CENTRE</small></span>
     </a>
-    <nav aria-label="Головна навігація">
-      <a href="#matches">Матчі</a>
-      <a href="#groups">Групи</a>
-      <a href="#bracket">Сітка</a>
-      <a href="#favorites">Шанси</a>
-      <a href="#squads">Склади</a>
+    <nav aria-label="Main navigation">
+      <a href="#matches">Matches</a>
+      <a href="#groups">Groups</a>
+      <a href="#bracket">Bracket</a>
+      <a href="#favorites">Chances</a>
+      <a href="#squads">Squads</a>
     </nav>
-    <div class="update-badge"><i></i><span>Оновлення</span><time id="updated-time">—</time></div>
-    <button class="menu-btn" aria-expanded="false" aria-controls="mobile-nav">Меню</button>
+    <div class="update-badge"><i></i><span>Updated</span><time id="updated-time">—</time></div>
+    <button class="menu-btn" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
   </header>
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Мобільна навігація">
-    <a href="#matches">Матчі</a><a href="#groups">Групи</a><a href="#bracket">Сітка</a><a href="#favorites">Шанси</a><a href="#squads">Склади</a>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="#matches">Matches</a><a href="#groups">Groups</a><a href="#bracket">Bracket</a><a href="#favorites">Chances</a><a href="#squads">Squads</a>
   </nav>
 
   <main id="main">
     <section class="hero" id="top">
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-copy">
-        <p class="kicker">Канада · Мексика · США</p>
-        <h1>УСІ МАТЧІ.<br><em>ОДИН ПУЛЬС.</em></h1>
-        <p>Розклад, результати, турнірні таблиці та команди Чемпіонату світу 2026 — в одному живому матч-центрі.</p>
+        <p class="kicker">Canada · Mexico · United States</p>
+        <h1>EVERY MATCH.<br><em>ONE PULSE.</em></h1>
+        <p>Fixtures, results, standings and all 48 teams at the 2026 World Cup — in one live match centre.</p>
         <div class="hero-actions">
-          <a class="primary-btn" href="#matches">Дивитися матчі <span>↓</span></a>
-          <a class="ticket-btn" href="https://www.fifa.com/en/tickets" target="_blank" rel="noopener">Офіційні квитки FIFA <span>↗</span></a>
+          <a class="primary-btn" href="#matches">View matches <span>↓</span></a>
+          <a class="ticket-btn" href="https://www.fifa.com/en/tickets" target="_blank" rel="noopener">Official FIFA tickets <span>↗</span></a>
         </div>
       </div>
       <div class="next-match" id="next-match">
-        <p class="micro">НАСТУПНИЙ МАТЧ</p>
-        <div class="loading-card">Завантажуємо матчі…</div>
+        <p class="micro">NEXT MATCH</p>
+        <div class="loading-card">Loading matches…</div>
       </div>
       <div class="pulse-line" aria-hidden="true"><i></i><b></b><i></i><b></b><i></i></div>
     </section>
 
     <section class="match-section section" id="matches">
       <div class="section-title">
-        <div><p class="eyebrow">Календар турніру</p><h2>МАТЧІ</h2></div>
-        <div class="filters" role="group" aria-label="Фільтрувати матчі">
-          <button class="filter active" data-filter="all">Усі</button>
+        <div><p class="eyebrow">Tournament calendar</p><h2>MATCHES</h2></div>
+        <div class="filters" role="group" aria-label="Filter matches">
+          <button class="filter active" data-filter="all">All</button>
           <button class="filter" data-filter="live">Live</button>
-          <button class="filter" data-filter="upcoming">Майбутні</button>
-          <button class="filter" data-filter="finished">Завершені</button>
+          <button class="filter" data-filter="upcoming">Upcoming</button>
+          <button class="filter" data-filter="finished">Finished</button>
         </div>
       </div>
       <div class="date-nav">
-        <button id="prev-day" aria-label="Попередній день">←</button>
+        <button id="prev-day" aria-label="Previous day">←</button>
         <div id="date-tabs" class="date-tabs"></div>
-        <button id="next-day" aria-label="Наступний день">→</button>
+        <button id="next-day" aria-label="Next day">→</button>
       </div>
       <div id="match-list" class="match-list" aria-live="polite"></div>
-      <button id="show-all-matches" class="outline-btn">Показати весь календар</button>
+      <button id="show-all-matches" class="outline-btn">Show full schedule</button>
     </section>
 
     <section class="groups-section section" id="groups">
       <div class="section-title light">
-        <div><p class="eyebrow">Груповий етап</p><h2>ТАБЛИЦІ</h2></div>
-        <p class="section-note"><i></i> Прохід далі</p>
+        <div><p class="eyebrow">Group stage</p><h2>STANDINGS</h2></div>
+        <p class="section-note"><i></i> Advances</p>
       </div>
       <div id="groups-grid" class="groups-grid"></div>
     </section>
 
     <section class="bracket-section section" id="bracket">
       <div class="section-title">
-        <div><p class="eyebrow">Шлях до фіналу</p><h2>ТУРНІРНА СІТКА</h2></div>
-        <p class="section-note dark">Команда, що програла матч на виліт, автоматично вибуває.</p>
+        <div><p class="eyebrow">Road to the final</p><h2>BRACKET</h2></div>
+        <p class="section-note dark">A team disappears from the favourites as soon as it is eliminated.</p>
       </div>
       <div class="bracket-scroll">
         <div id="bracket-board" class="bracket-board"></div>
@@ -90,43 +90,43 @@
 
     <section class="favorites-section section" id="favorites">
       <div class="favorites-head">
-        <p class="eyebrow">Модель форми</p>
-        <h2>ХТО ВІЗЬМЕ<br>КУБОК?</h2>
-        <p>Оціночні шанси перераховуються після матчів за очками, різницею голів і перемогами в плей-оф. Це аналітична модель, а не букмекерські коефіцієнти.</p>
+        <p class="eyebrow">Form model</p>
+        <h2>WHO LIFTS<br>THE CUP?</h2>
+        <p>Estimated chances are recalculated after matches using points, goal difference and knockout wins. This is an analytical model, not betting odds.</p>
       </div>
       <div id="favorites-list" class="favorites-list"></div>
     </section>
 
     <section class="squads-section section" id="squads">
       <div class="section-title">
-        <div><p class="eyebrow">48 збірних</p><h2>СКЛАДИ</h2></div>
-        <label class="team-search">Знайти команду
-          <input id="team-search" type="search" placeholder="Наприклад, Норвегія">
+        <div><p class="eyebrow">48 national teams</p><h2>SQUADS</h2></div>
+        <label class="team-search">Find a team
+          <input id="team-search" type="search" placeholder="For example, Norway">
         </label>
       </div>
       <div id="team-chips" class="team-chips"></div>
       <div id="squad-panel" class="squad-panel">
-        <p>Оберіть команду, щоб переглянути склад.</p>
+        <p>Select a team to view its squad.</p>
       </div>
     </section>
 
     <section class="sources section">
-      <p class="eyebrow">Джерела та квитки</p>
-      <h2>ПЕРЕВІРЯЙ.<br>ДОВІРЯЙ.</h2>
+      <p class="eyebrow">Sources and tickets</p>
+      <h2>CHECK IT.<br>TRUST IT.</h2>
       <div class="source-links">
         <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/scores-fixtures?country=NO&wtw-filter=ALL" target="_blank" rel="noopener"><span>01</span> FIFA Fixtures ↗</a>
         <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums" target="_blank" rel="noopener"><span>02</span> FIFA Schedule ↗</a>
         <a href="https://www.espn.com/soccer/schedule/_/league/fifa.world" target="_blank" rel="noopener"><span>03</span> ESPN Schedule ↗</a>
         <a href="https://www.skysports.com/fifa-world-cup-scores-fixtures" target="_blank" rel="noopener"><span>04</span> Sky Sports ↗</a>
       </div>
-      <a class="big-ticket" href="https://www.fifa.com/en/tickets" target="_blank" rel="noopener">КУПИТИ КВИТКИ НА FIFA.COM <span>↗</span></a>
+      <a class="big-ticket" href="https://www.fifa.com/en/tickets" target="_blank" rel="noopener">BUY TICKETS AT FIFA.COM <span>↗</span></a>
     </section>
   </main>
 
   <footer>
     <div class="logo"><span class="logo-ball">26</span><span>WORLD CUP<br><small>MATCH CENTRE</small></span></div>
-    <p>Незалежний інформаційний проєкт. Не є офіційним сайтом FIFA. Дані автоматично оновлюються з указаних джерел.</p>
-    <p>Час матчів показано у вашому часовому поясі.</p>
+    <p>An independent information project. Not an official FIFA website. Data updates automatically from the listed sources.</p>
+    <p>Kick-off times are shown in your local time zone.</p>
   </footer>
 
   <script src="app.js" defer></script>

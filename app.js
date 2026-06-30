@@ -2,7 +2,7 @@ const state = { data: null, filter: "all", selectedDate: null, showAll: false };
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
 
-const fmtDate = (iso, options = {}) => new Intl.DateTimeFormat("uk-UA", {
+const fmtDate = (iso, options = {}) => new Intl.DateTimeFormat("en-GB", {
   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   ...options
 }).format(new Date(iso));
@@ -20,16 +20,16 @@ function teamHTML(team, away = false) {
 function renderNext() {
   const next = state.data.matches.find(m => ["pre", "in"].includes(m.state));
   if (!next) {
-    $("#next-match").innerHTML = `<p class="micro">ТУРНІР</p><div class="loading-card">Усі матчі завершено.</div>`;
+    $("#next-match").innerHTML = `<p class="micro">TOURNAMENT</p><div class="loading-card">All matches are complete.</div>`;
     return;
   }
-  $("#next-match").innerHTML = `<p class="micro">${next.state === "in" ? "LIVE ЗАРАЗ" : "НАСТУПНИЙ МАТЧ"}</p>
+  $("#next-match").innerHTML = `<p class="micro">${next.state === "in" ? "LIVE NOW" : "NEXT MATCH"}</p>
     <div class="next-teams">
       <div class="team"><img src="${next.home.logo}" alt=""><span>${next.home.name}</span></div>
       <span class="versus">${next.state === "in" ? `${next.home.score} : ${next.away.score}` : "VS"}</span>
       <div class="team"><span>${next.away.name}</span><img src="${next.away.logo}" alt=""></div>
     </div>
-    <div class="match-meta"><span>${fmtDate(next.date, { weekday: "short", day: "numeric", month: "long" })} · ${fmtTime(next.date)}</span><span>${next.venue || "Стадіон уточнюється"}</span></div>`;
+    <div class="match-meta"><span>${fmtDate(next.date, { weekday: "short", day: "numeric", month: "long" })} · ${fmtTime(next.date)}</span><span>${next.venue || "Venue to be confirmed"}</span></div>`;
 }
 
 function renderDates() {
@@ -58,15 +58,15 @@ function renderMatches() {
     <div class="score">${m.state === "pre" ? `<span class="match-time">${fmtTime(m.date)}</span>` : `${m.home.score} — ${m.away.score}`}<small class="${m.state === "in" ? "live" : ""}">${m.status}</small></div>
     ${teamHTML(m.away, true)}
     <div class="match-place">${m.venue || "—"}<br>${m.city || ""}</div>
-    <a class="match-link" href="${m.link}" target="_blank" rel="noopener" aria-label="Матч на ESPN">↗</a>
-  </article>`).join("") : `<p class="empty">Матчів за цим фільтром немає.</p>`;
-  $("#show-all-matches").textContent = state.showAll ? "Показати вибраний день" : "Показати весь календар";
+    <a class="match-link" href="${m.link}" target="_blank" rel="noopener" aria-label="Match on ESPN">↗</a>
+  </article>`).join("") : `<p class="empty">No matches match this filter.</p>`;
+  $("#show-all-matches").textContent = state.showAll ? "Show selected day" : "Show full schedule";
 }
 
 function renderGroups() {
   $("#groups-grid").innerHTML = state.data.groups.map(g => `<article class="group-card">
     <h3>${g.name}</h3><table class="group-table">
-      <thead><tr><th>#</th><th>Команда</th><th>І</th><th>РМ</th><th>О</th></tr></thead>
+      <thead><tr><th>#</th><th>Team</th><th>PL</th><th>GD</th><th>PTS</th></tr></thead>
       <tbody>${g.teams.map(t => `<tr class="${t.advanced ? "advanced" : ""}">
         <td>${t.rank}</td><td><img src="${t.logo}" alt="">${t.name}</td><td>${t.played}</td><td>${t.gd > 0 ? "+" : ""}${t.gd}</td><td><b>${t.points}</b></td>
       </tr>`).join("")}</tbody>
@@ -82,7 +82,7 @@ function renderBracket() {
       <div class="bracket-team ${m.home.winner ? "winner" : ""}">${m.home.logo ? `<img src="${m.home.logo}" alt="">` : ""}<span>${m.home.name}</span><b>${m.state === "post" ? m.home.score : ""}</b></div>
       <div class="bracket-team ${m.away.winner ? "winner" : ""}">${m.away.logo ? `<img src="${m.away.logo}" alt="">` : ""}<span>${m.away.name}</span><b>${m.state === "post" ? m.away.score : ""}</b></div>
       <div class="bracket-date">${fmtDate(m.date, { day: "numeric", month: "short" })} · ${fmtTime(m.date)}</div>
-    </article>`).join("") : `<p class="empty">Пари ще визначаються</p>`}
+    </article>`).join("") : `<p class="empty">Matchups to be determined</p>`}
   </section>`).join("");
 }
 
@@ -103,8 +103,8 @@ function renderTeams(filter = "") {
 function renderSquad(id) {
   const team = state.data.teams.find(t => String(t.id) === String(id));
   $$(".team-chip").forEach(b => b.classList.toggle("active", b.dataset.team === String(id)));
-  $("#squad-panel").innerHTML = `<div class="squad-head"><img src="${team.logo}" alt=""><div><h3>${team.name}</h3><p>${team.coach ? `Тренер: ${team.coach}` : "Склад збірної"}</p></div></div>
-    <div class="players">${team.players.map(p => `<div class="player"><b>${p.jersey ? `${p.jersey}. ` : ""}${p.name}</b><span>${p.position || "Гравець"}</span></div>`).join("")}</div>`;
+  $("#squad-panel").innerHTML = `<div class="squad-head"><img src="${team.logo}" alt=""><div><h3>${team.name}</h3><p>${team.coach ? `Coach: ${team.coach}` : "National team squad"}</p></div></div>
+    <div class="players">${team.players.map(p => `<div class="player"><b>${p.jersey ? `${p.jersey}. ` : ""}${p.name}</b><span>${p.position || "Player"}</span></div>`).join("")}</div>`;
 }
 
 async function init() {
@@ -115,7 +115,7 @@ async function init() {
     $("#updated-time").textContent = fmtDate(state.data.updatedAt, { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
     renderNext(); renderDates(); renderMatches(); renderGroups(); renderBracket(); renderFavorites(); renderTeams();
   } catch {
-    $("#match-list").innerHTML = `<p class="empty">Не вдалося завантажити дані. Спробуйте оновити сторінку.</p>`;
+    $("#match-list").innerHTML = `<p class="empty">The data could not be loaded. Please refresh the page.</p>`;
   }
 }
 
