@@ -67,7 +67,7 @@ function renderGroups() {
   $("#groups-grid").innerHTML = state.data.groups.map(g => `<article class="group-card">
     <h3>${g.name}</h3><table class="group-table">
       <thead><tr><th>#</th><th>Team</th><th>PL</th><th>GD</th><th>PTS</th></tr></thead>
-      <tbody>${g.teams.map(t => `<tr class="${t.advanced ? "advanced" : ""}">
+      <tbody>${[...g.teams].sort((a, b) => a.rank - b.rank).map(t => `<tr class="${t.advanced ? "advanced" : ""}">
         <td>${t.rank}</td><td><img src="${t.logo}" alt="">${t.name}</td><td>${t.played}</td><td>${t.gd > 0 ? "+" : ""}${t.gd}</td><td><b>${t.points}</b></td>
       </tr>`).join("")}</tbody>
     </table>

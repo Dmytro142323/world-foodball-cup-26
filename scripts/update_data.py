@@ -103,6 +103,7 @@ def main():
             }
             rows.append(row)
             teams_by_id[str(row["id"])] = {**row, "players": [], "coach": ""}
+        rows.sort(key=lambda team: team["rank"])
         groups.append({"name": group.get("name", "Group"), "teams": rows})
 
     eliminated = {tid for tid, t in teams_by_id.items() if t["played"] >= 3 and not t["advanced"]}
